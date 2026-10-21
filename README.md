@@ -1,44 +1,56 @@
 # Constructing an Intermodal U.S. Hurricane Relief Network
 
-**Generative AI Note:** Generative AI was not used in the development of the rail, intermodal, population, or truck-routing portions of this project. Generative AI was used in portions of the hurricane and weather analysis. A detailed disclosure is provided at the end of the notebook.
+## Overview
+
+This project explores how historical hurricane activity, population data, and intermodal transportation infrastructure can support disaster relief planning in the United States.
+
+The goal is to examine how transportation networks and potential supply hubs can help deliver relief supplies to hurricane-affected cities.
+
+## Business Problem
+
+Hurricanes can disrupt transportation infrastructure and create urgent demand for emergency supplies. Identifying suitable supply hubs and understanding the geographic distribution of affected populations can help improve relief logistics planning.
+
+## Project Objectives
+
+- Analyze historical hurricane activity and storm characteristics
+- Identify eligible cities, affected cities, and potential supply cities
+- Examine population distribution and transportation infrastructure
+- Calculate geographic distances between potential supply hubs and affected cities
+- Explore how an intermodal transportation network could support relief distribution
 
 ## Data Sources
 
-| Data | Source | License / Terms | Access |
-|---|---|---|---|
-| Historical Hurricane Tracks | NOAA National Hurricane Center, Atlantic HURDAT2 | NOAA public data; data may be used and redistributed. | https://www.nhc.noaa.gov/data/ |
-| Atlantic Sea Surface Temperature | NOAA Climate Prediction Center, Monthly Atlantic SST Indices (North, South and Tropical Atlantic) | NOAA public data; data may be used and redistributed. | https://www.cpc.ncep.noaa.gov/data/indices/sstoi.atl.indices |
-| Ocean Temperature | NSF NCAR Climate Data Guide | Publicly accessible research data; responsible use and citation of the original dataset are encouraged. | https://climatedataguide.ucar.edu/climate-data |
-| U.S. Rail Network | Federal Railroad Administration / Bureau of Transportation Statistics, North American Rail Network | Public-domain federal geospatial data (CC0 / U.S. Public Domain). | https://catalog.data.gov/dataset/north-american-rail-network-lines |
-| Intermodal Facilities | Bureau of Transportation Statistics, Intermodal Freight Facilities Rail TOFC/COFC | U.S. Public Domain. | https://catalog.data.gov/dataset/intermodal-freight-facilities-rail-tofc-cofc-c0c43 |
-| Population Estimates | U.S. Census Bureau, Vintage 2025 Population Estimates | Public-use U.S. Census Bureau data; source should be cited and analysis should not imply Census Bureau endorsement. | https://www.census.gov/data/tables/time-series/demo/popest/2020s-total-cities-and-towns.html |
-| City Coordinates | Simple Maps (via US Census Data)| Public-use data| https://simplemaps.com/data/us-cities |
-**Data Access:** All datasets are publicly accessible through the links above. Data were downloaded from the respective source websites and imported into Python for cleaning, integration, and analysis.
+- NOAA HURDAT2: Historical Atlantic hurricane data
+- U.S. Census Bureau: City population data
+- U.S. Department of Transportation: Intermodal transportation infrastructure
+- Additional climate and geographic datasets used in the analysis
 
-## Executive Summary
+## Tools and Technologies
 
-This project examines how historical hurricane activity, population, intermodal terminals, rail infrastructure, and modeled trucking routes can inform U.S. hurricane-relief planning. We clean and integrate the source datasets, compare historical county-level storm-center exposure with population, and assess route distances, travel times, and alternative supply origins. The transportation screening evaluates **241 intermodal hubs across six destinations (1,446 hub–destination routes)**: five exposure-priority locations plus New Orleans as a separate Hurricane Katrina case.
+Python, pandas, NumPy, GeoPandas, Matplotlib, Jupyter Notebook, Geographic Analysis
 
-**Key findings:** Historical storm-center exposure and population represent different prioritization criteria; straight-line distances cannot substitute for road-network routing; and the fastest modeled trucking option is not always the only practical candidate. Rail ownership and network connectivity add constraints that a truck-only analysis cannot capture. The rail–truck optimization section presents Julian's submitted modeling workflow and outputs, subject to the limitations described below.
+## Methodology
 
-**Decision implication:** Use these results to prioritize which candidate routes and hubs warrant operational verification—not to claim that routes will remain open after a hurricane. The next step is to validate destination coordinates and assess disruption, access, and transfer assumptions before treating modeled travel times as deployment commitments.
+1. Clean and prepare hurricane, population, and transportation datasets.
+2. Analyze historical hurricane characteristics and geographic patterns.
+3. Identify eligible, affected, and supply cities based on project criteria.
+4. Calculate distances between potential supply locations and affected cities.
+5. Explore transportation network opportunities for disaster relief planning.
 
-## 1. Problem Definition
+## Repository Structure
 
-When a hurricane affects a city, getting relief supplies there quickly can become difficult because the same storm can disrupt the transportation network needed to reach it. This project aims to determine how supplies can be moved from large, safe U.S. supply hubs to hurricane-affected cities using truck and rail transportation. The main decision is which available route can deliver those supplies most efficiently while accounting for the location of the storm, the population being served, and whether the transportation network remains accessible. This is especially important for humanitarian and disaster-relief organizations that need to make transportation decisions quickly after a hurricane. We will measure success by the percentage of selected relief routes that can reach affected cities within three days.
+- `notebooks/`: Data cleaning, exploratory analysis, and modeling
+- `data/`: Sample data or data access instructions
+- `outputs/`: Selected visualizations and analytical results
 
-We will:
+## How to Use
 
-- Identify hurricane-affected cities in the nine-state study area using historical hurricane and population data.
-- Identify large population centers that can serve as supply hubs outside the affected area.
-- Evaluate truck-only and intermodal rail-truck transportation options between supply hubs and affected cities.
-- Compare available routes based on estimated transportation time and accessibility.
-- Determine the most efficient relief route and whether it can reach the affected city within the three-day target.
+Open the notebook in Jupyter Notebook or Google Colab. Review the data sources and configure the required input files before running the analysis.
 
-## 2. Data Overview
+## Limitations
 
-We are using several datasets to cover the different parts of the relief network. Hurricane and climate data tell us about the storms, Census population data help us identify cities that may need relief or could serve as supply hubs, and the rail and intermodal data show the transportation network available between them.
+Geographic distance alone does not represent actual travel time, road conditions, transportation capacity, or infrastructure disruptions during a hurricane. Further routing and optimization analysis would be needed to develop an operational relief network.
 
-So far, we have prepared the hurricane, population, intermodal facility, and rail network data. The remaining climate and routing pieces will be added as the rest of the analysis is completed.
+## Project Context
 
-**Section Takeaway:** These datasets give us information on both sides of the problem: where relief may be needed and what transportation options are available to get it there.
+This project was developed as part of a graduate-level business analytics project. Contributions, data sources, and results should be documented accurately and in accordance with applicable course and team-sharing requirements.
